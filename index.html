@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TEVİTOL Cumhuriyet Balosu 2025</title>
+  <meta name="description" content="Cumhuriyet Balosu 2025 Davetiyesi — TEVİTOL">
+  <meta name="theme-color" content="#8e0000">
+  <style>
+    :root{
+      --bg:#940000;
+      --bg2:#6e0000;
+      --paper:#f6f2e9;
+      --light:#fff7f0;
+      --text:#f6f2e9;
+      --shadow: 0 20px 50px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 1200px at 10% 10%, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+    .wrap{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+    .card{
+      width:min(820px, 96vw);
+      aspect-ratio: 3/4;
+      position:relative;
+      perspective:1200px;
+    }
+    /* Envelope */
+    .envelope{
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+      border-radius:24px;
+      background: linear-gradient(145deg, #b10505, #7a0000);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      transition: transform .8s cubic-bezier(.2,.7,.2,1), opacity .6s ease;
+    }
+    .envelope:before, .envelope:after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(to bottom right, transparent 49.5%, rgba(0,0,0,.15) 50%) top left/50% 50% no-repeat,
+        linear-gradient(to bottom left, transparent 49.5%, rgba(0,0,0,.15) 50%) top right/50% 50% no-repeat,
+        linear-gradient(to top right, transparent 49.5%, rgba(0,0,0,.15) 50%) bottom left/50% 50% no-repeat,
+        linear-gradient(to top left, transparent 49.5%, rgba(0,0,0,.15) 50%) bottom right/50% 50% no-repeat;
+      opacity:.35;
+      pointer-events:none;
+    }
+    .seal{
+      position:absolute;
+      width:120px; height:120px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #ffd3a1, #ffb56b 40%, #d68444 70%, #a25b27);
+      box-shadow: 0 6px 0 rgba(0,0,0,.25), inset 0 4px 10px rgba(0,0,0,.25);
+      display:grid; place-items:center;
+    }
+    .seal span{ font-weight:700; color:#4a1c00; letter-spacing:.04em}
+    .hint{
+      position:absolute; bottom:18px; left:0; right:0;
+      text-align:center; font-size:14px; opacity:.85;
+    }
+
+    /* The invitation (paper) */
+    .paper{
+      position:absolute; inset:0;
+      border-radius:22px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      transform: rotateX(14deg) translateY(20px) scale(.98);
+      transform-origin: 50% 100%;
+      overflow:hidden;
+      opacity:0;
+      transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .6s ease;
+    }
+    .paper img{
+      width:100%; height:100%; object-fit:cover;
+      display:block;
+    }
+
+    /* Open state */
+    .open .envelope{
+      transform: translateY(30px) rotateX(-18deg) scale(.96);
+      opacity:0;
+      pointer-events:none;
+    }
+    .open .paper{
+      transform: rotateX(0) translateY(0) scale(1);
+      opacity:1;
+    }
+
+    header.suptitle{
+      position: fixed;
+      top:16px; left:50%; transform:translateX(-50%);
+      font-size:14px; letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.85;
+      user-select:none;
+    }
+    .footer{
+      margin-top:18px; text-align:center; opacity:.8; font-size:14px;
+    }
+    .actions{
+      margin-top:12px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    }
+    button{
+      background:#f6f2e9; color:#7a0000; border:0; border-radius:999px;
+      padding:10px 16px; font-weight:700; cursor:pointer; box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+    button:hover{ transform: translateY(-1px) }
+    a.btn{ text-decoration:none; }
+    /* Confetti  */
+    .confetti { position: fixed; inset:0; pointer-events:none; overflow:hidden }
+    .piece{
+      position:absolute; width:10px; height:14px; opacity:0; transform: translateY(-20vh) rotate(0);
+      animation: fall 2600ms ease-in forwards;
+    }
+    @keyframes fall{
+      0%{opacity:0; transform: translateY(-20vh) rotate(0deg)}
+      8%{opacity:1}
+      100%{opacity:1; transform: translateY(110vh) rotate(720deg)}
+    }
+
+    /* Audio toggle */
+    .audio{
+      position:fixed; right:14px; bottom:14px;
+      background: rgba(246,242,233,.9); color:#7a0000; border-radius:999px; padding:8px 12px; font-weight:700;
+      box-shadow: 0 10px 22px rgba(0,0,0,.25); cursor:pointer; user-select:none;
+    }
+    .sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap }
+
+  </style>
+</head>
+<body>
+  <header class="suptitle">Cumhuriyetimizin 102. yılı • TEVİTOL</header>
+  <div class="wrap">
+    <div class="card" id="card">
+      <div class="envelope" id="envelope" role="button" aria-label="Davetiyeyi aç">
+        <div class="seal"><span>🇹🇷</span></div>
+        <div class="hint">Dokun / tıkla: Davetiye açılsın</div>
+      </div>
+      <div class="paper" id="paper" aria-hidden="true">
+        <img src="assets/invitation.jpg" alt="Cumhuriyet Balosu 2025 Davetiyesi">
+      </div>
+    </div>
+    <div class="actions">
+      <button id="openBtn">Davetiyeyi Aç</button>
+      <a class="btn" href="#program" style="color:#f6f2e9"><button style="background:#ffd8b0">Gün Planını Gör</button></a>
+    </div>
+    <p class="footer" id="program">17.30 Akşam Yemeği – Bahçe • 18.00–19.00 Fotoğraf – Müze • 19.00–22.50 Balo – Yemekhane • 23.00 Yatakhane Girişi</p>
+  </div>
+
+  <div class="confetti" id="confetti"></div>
+
+  <audio id="bgm" loop>
+    <source src="" type="audio/mpeg">
+  </audio>
+  <div class="audio" id="audioToggle" aria-pressed="false">🔈 Müzik: Kapalı</div>
+  <span class="sr" id="ariaStatus" aria-live="polite"></span>
+
+<script>
+  const root = document.documentElement;
+  const card = document.getElementById('card');
+  const openBtn = document.getElementById('openBtn');
+  const envelope = document.getElementById('envelope');
+  const ariaStatus = document.getElementById('ariaStatus');
+  const audioToggle = document.getElementById('audioToggle');
+  const bgm = document.getElementById('bgm'); // boş, isterseniz MP3 linki ekleyin
+
+  function openInvite(){
+    if(card.classList.contains('open')) return;
+    card.classList.add('open');
+    ariaStatus.textContent = "Davetiye açıldı";
+    confettiBurst();
+  }
+  openBtn.addEventListener('click', openInvite);
+  envelope.addEventListener('click', openInvite);
+
+  // Confetti
+  const confetti = document.getElementById('confetti');
+  function confettiBurst(){
+    confetti.innerHTML = "";
+    const colors = ['#f6f2e9','#ffe5c7','#ffd8b0','#ffffff','#ffb48a'];
+    const reds = ['#8e0000','#a00000','#c10000','#6e0000'];
+    for(let i=0;i<140;i++){
+      const piece = document.createElement('div');
+      piece.className = 'piece';
+      const size = Math.random()*8+6;
+      const left = Math.random()*100;
+      const delay = Math.random()*400;
+      piece.style.left = left+'vw';
+      piece.style.width = size+'px';
+      piece.style.height = size*1.4+'px';
+      piece.style.background = Math.random()>.45? colors[Math.floor(Math.random()*colors.length)] : reds[Math.floor(Math.random()*reds.length)];
+      piece.style.animationDelay = delay+'ms';
+      confetti.appendChild(piece);
+    }
+  }
+
+  // Audio toggle (placeholder – kullanıcı MP3 eklerse aktif olur)
+  audioToggle.addEventListener('click', () => {
+    if(!bgm.src){
+      alert("İpucu: Bir MP3 linki eklemek isterseniz index.html içinde <audio id='bgm'> kaynağına URL yazın.");
+      return;
+    }
+    if(bgm.paused){
+      bgm.play(); audioToggle.textContent = "🔊 Müzik: Açık"; audioToggle.setAttribute('aria-pressed','true');
+    }else{
+      bgm.pause(); audioToggle.textContent = "🔈 Müzik: Kapalı"; audioToggle.setAttribute('aria-pressed','false');
+    }
+  });
+</script>
+</body>
+</html>
